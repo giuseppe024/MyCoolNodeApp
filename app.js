@@ -8,12 +8,43 @@ res.statusCode = 200;
 
 res.setHeader('Content-Type', 'text/html');
 
-res.end('<h1>Hello World</h1>');
+res.end('<h1>Hello World, Happy New Year</h1>');
 
 });
 
 server.listen(port,() => {
+    let today = new Date();
 
-console.log(`Server running at port `+port + '. CTRL-C to stop');
+    console.log(dateTimeForLog(today) + ' ' + `Server running at port `+port + '. CTRL-C to stop');
 
 });
+
+function dateTimeForLog(dt) {
+    let dd = dt.getDate(); //1..31
+    let mm = dt.getMonth()+1; //0..11, January is 0!
+    let hh = dt.getHours(); //0..23
+    let mn = dt.getMinutes(); // 0..59
+    let ss = dt.getSeconds(); // 0..59
+
+    if(dd<10) {
+        dd = '0'+dd;
+    } 
+
+    if(mm<10) {
+        mm = '0'+mm;
+    } 
+
+    if(hh<10) {
+        hh = '0'+hh;
+    } 
+
+    if(mn<10) {
+        mn = '0'+mn;
+    } 
+
+    if(ss<10) {
+        ss = '0'+ss;
+    } 
+
+    return dt.getFullYear() + mm + dd + '_' + hh + mn + ss;
+}
