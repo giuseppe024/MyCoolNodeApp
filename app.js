@@ -1,6 +1,6 @@
 const http = require('http');
 
-const port=process.env.PORT || 3000
+const port = process.env.PORT || 3000
 
 const server = http.createServer((req, res) => {
 
@@ -8,16 +8,29 @@ res.statusCode = 200;
 
 res.setHeader('Content-Type', 'text/html');
 
-res.end('<h1>Hello World, Happy New Year</h1>');
-
+// res.end('<h1>Hello World, Happy New Year</h1>');
+res.end(response(req, res));
 });
 
 server.listen(port,() => {
     let today = new Date();
 
-    console.log(dateTimeForLog(today) + ' ' + `Server running at port `+port + '. CTRL-C to stop');
+    console.log(dateTimeForLog(today) + ' ' + `Server running at port `+ port + '. CTRL-C to stop');
 
 });
+
+function response(req, res) {
+    let head = '<!DOCTYPE html><html><head><meta charset="UTF-8">';
+    let body = '<body id"theBody">'
+    let bodyEnd = '</body></html>'
+
+    let hello = '<h1>Hello World, Happy New Year</h1>';
+    
+    let xfp = req.headers['x-forwarded-proto']  || 'GC undefined';
+    let xProto = '<h5>x-forwarded-proto = ' + xfp + '</h5>';
+    
+    return head + body + hello + xProto + bodyEnd;
+}
 
 function dateTimeForLog(dt) {
     let dd = dt.getDate(); //1..31
