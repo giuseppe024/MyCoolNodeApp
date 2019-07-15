@@ -24,7 +24,7 @@ function response(req, res) {
     let body = '<body id"theBody">'
     let bodyEnd = '</body></html>'
 
-    let hello = '<h1>Hello World, Happy New Year</h1>';
+    let hello = '<h1>Hello World, Happy New Year 2019</h1>';
     
     let xfp = req.headers['x-forwarded-proto']  || 'GC undefined';
     let xProto = '<h5>x-forwarded-proto = ' + xfp + '</h5>';
